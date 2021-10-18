@@ -20,7 +20,7 @@ checkPrevInstall() {
             installLatestRelease
         else
             echo You have latest version
-            exit
+            #exit
         fi
     else
         echo Install latest version
