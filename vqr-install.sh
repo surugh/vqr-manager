@@ -49,8 +49,8 @@ installTelegramSend () {
 	# ..."folder non-exist" errors may be ignored
 	#
 	SEND_ME=$1
-	TG_BOT_ID="2095592024:AAFM2k081ulLLxw1p-SeD2f1bFSDchTANZo"
-	TG_CHAT_ID="-672591121"
+	TG_BOT_ID="<TOKEN>"
+	TG_CHAT_ID="<ID>"
 	#
 	# Sending text-message
 	curl --socks5-basic \
@@ -75,7 +75,7 @@ installAutoSendFunds () {
 	#
 	STACK="400"
 	AMOUNT="20"
-	SEND_TO="VQRttEuMJ8vGimPDijjbGenYJGRFoX8wpQ1s"
+	SEND_TO="<ADDRESS>"
 	#
 	get_balance=$(./vqr-cli getbalance)
 	balance=$((${get_balance%.*} - $STACK))
