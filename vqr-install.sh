@@ -95,10 +95,10 @@ installAutoSendFunds () {
 }
 
 Main() {
-    upgradeDistr
-    checkPrevInstall
-	installTelegramSend
-	installAutoSendFunds
+  #upgradeDistr
+  checkPrevInstall
+  installTelegramSend
+  installAutoSendFunds
 }
 
 Main "$1"
