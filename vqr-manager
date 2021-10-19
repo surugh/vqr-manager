@@ -1,0 +1,16 @@
+#!/bin/bash
+
+. functions
+echo
+echo -e "What you wish to do?\nЧто вы хотите сделать?"
+select lina in "Upgrade_Linux" \
+                "INSTALL_VQR" \
+                "Install_Telegram_Notify" \
+                "Auto_Send_Funds"; do
+  case $lina in
+    Upgrade_Linux ) upgradeDistr; break;;
+    INSTALL_VQR ) checkPrevInstall; break;;
+    Install_Telegram_Notify ) installTelegramSend; break;;
+    Auto_Send_Funds ) installAutoSendFunds; break;;
+  esac
+done

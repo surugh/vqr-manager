@@ -1,0 +1,54 @@
+#!/bin/bash
+
+LATEST_RELEASE="0.17.2.3"
+
+upgradeDistr() {
+  sudo apt update
+  sudo apt upgrade -y
+	sudo apt autoclean
+	sudo apt autoremove
+}
+
+checkPrevInstall() {
+  if [ -f vqr-cli  ]; then
+      version=$(./vqr-cli --version)
+      curr_ver=${version: -8}
+      if [ "$curr_ver" != "$LATEST_RELEASE" ]; then
+          echo Update to latest version ...
+          ./vqr-cli stop
+          sleep 2
+          installLatestRelease
+      else
+          echo You have latest version "$curr_ver"
+          exit
+      fi
+  else
+      echo Install latest version
+      sudo apt install wget
+      installLatestRelease
+  fi
+}
+
+installLatestRelease() {
+  github_url="https://github.com/vovanchik-net/vqr/releases/download/"$LATEST_RELEASE
+  github_tar="vqr-$LATEST_RELEASE-x86_64-linux-gnu.tar.gz"
+  wget "$github_url""/""$github_tar"
+  tar -xvf "$github_tar"
+  rm "$github_tar"
+  ./vqrd -daemon
+  sleep 2
+  ./vqr-cli --version
+}
+
+installTelegramSend() {
+	sudo chmod +x telegram-send
+	./telegram-send "TelegramSend Done!"
+}
+
+installAutoSendFunds() {
+  sudo chmod +x send-funds
+	# Add script to crontab (Run every 1 hour)
+	crontab -l | { cat; echo "* 1 * * * /$HOME/vqr-manager/./send-funds >/dev/null 2>&1"; } | crontab -
+	# Send test message to Telegram
+	./telegram-send "AutoSendFunds Done!"
+}
