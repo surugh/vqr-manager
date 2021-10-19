@@ -10,7 +10,7 @@ upgradeDistr() {
 }
 
 checkPrevInstall() {
-  if [ -f vqr-cli  ]; then
+  if [ -f /$HOME/vqr-cli  ]; then
       version=$(./vqr-cli --version)
       curr_ver=${version: -8}
       if [ "$curr_ver" != "$LATEST_RELEASE" ]; then
