@@ -33,7 +33,7 @@ installLatestRelease() {
   github_url="https://github.com/vovanchik-net/vqr/releases/download/"$LATEST_RELEASE
   github_tar="vqr-$LATEST_RELEASE-x86_64-linux-gnu.tar.gz"
   wget "$github_url""/""$github_tar"
-  tar -xvf "$github_tar"
+  tar -xvf "$github_tar" -C /$HOME
   rm "$github_tar"
   ./vqrd -daemon
   sleep 2
