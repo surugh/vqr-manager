@@ -8,7 +8,7 @@ get_balance=$(./vqr-cli getbalance)
 balance=$((${get_balance%.*} - $STACK))
 if [ $balance \> $AMOUNT ]; then
   tx=$(./vqr-cli "$SEND_TO" $AMOUNT)
-  telegram-send "https://vqr.vovanchik.net/tx.php?hash=$tx"
+  $HOME/vqr-manager/./telegram-send "https://vqr.vovanchik.net/tx.php?hash=$tx"
   else
     #telegram-send $balance
     exit
