@@ -3,41 +3,41 @@
 LATEST_RELEASE="0.17.2.3"
 
 upgradeDistr() {
-  sudo apt update
-  sudo apt upgrade -y
+	sudo apt update
+	sudo apt upgrade -y
 	sudo apt autoclean
 	sudo apt autoremove
 }
 
 checkPrevInstall() {
-  if [ -f $HOME/vqr-cli  ]; then
-      version=$($HOME/./vqr-cli --version)
-      curr_ver=${version: -8}
-      if [ "$curr_ver" != "$LATEST_RELEASE" ]; then
-          echo Update to latest version ...
-          $HOME/./vqr-cli stop
-          sleep 2
-          installLatestRelease
-      else
-          echo You have latest version "$curr_ver"
-          exit
-      fi
-  else
-      echo Install latest version
-      sudo apt install wget
-      installLatestRelease
-  fi
+	if [ -f $HOME/vqr-cli  ]; then
+		version=$($HOME/./vqr-cli --version)
+		curr_ver=${version: -8}
+		if [ "$curr_ver" != "$LATEST_RELEASE" ]; then
+			echo Update to latest version ...
+			$HOME/./vqr-cli stop
+			sleep 2
+			installLatestRelease
+		else
+			echo You have latest version "$curr_ver"
+			exit
+		fi
+	else
+		echo Install latest version
+		sudo apt install wget
+		installLatestRelease
+	fi
 }
 
 installLatestRelease() {
-  github_url="https://github.com/vovanchik-net/vqr/releases/download/"$LATEST_RELEASE
-  github_tar="vqr-$LATEST_RELEASE-x86_64-linux-gnu.tar.gz"
-  wget "$github_url""/""$github_tar"
-  tar -xvf "$github_tar" -C $HOME/
-  rm "$github_tar"
-  $HOME/./vqrd -daemon
-  sleep 2
-  $HOME/./vqr-cli --version
+	github_url="https://github.com/vovanchik-net/vqr/releases/download/"$LATEST_RELEASE
+	github_tar="vqr-$LATEST_RELEASE-x86_64-linux-gnu.tar.gz"
+	wget "$github_url""/""$github_tar"
+	tar -xvf "$github_tar" -C $HOME/
+	rm "$github_tar"
+	$HOME/./vqrd -daemon
+	sleep 2
+	$HOME/./vqr-cli --version
 }
 
 installTelegramSend() {
@@ -46,7 +46,7 @@ installTelegramSend() {
 }
 
 installAutoSendFunds() {
-  sudo chmod +x $HOME/vqr-manager/send-funds
+	sudo chmod +x $HOME/vqr-manager/send-funds
 	# Add script to crontab (Run every 1 hour)
 	crontab -l | { cat; echo "0 */1 * * * $HOME/vqr-manager/./send-funds >/dev/null 2>&1"; } | crontab -
 	# Send test message to Telegram
