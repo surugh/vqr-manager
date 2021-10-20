@@ -15,7 +15,7 @@ checkPrevInstall() {
       curr_ver=${version: -8}
       if [ "$curr_ver" != "$LATEST_RELEASE" ]; then
           echo Update to latest version ...
-          ./vqr-cli stop
+          $HOME/./vqr-cli stop
           sleep 2
           installLatestRelease
       else
@@ -33,11 +33,11 @@ installLatestRelease() {
   github_url="https://github.com/vovanchik-net/vqr/releases/download/"$LATEST_RELEASE
   github_tar="vqr-$LATEST_RELEASE-x86_64-linux-gnu.tar.gz"
   wget "$github_url""/""$github_tar"
-  tar -xvf "$github_tar" -C /$HOME
-  rm "$github_tar"
-  ./vqrd -daemon
+  tar -xvf "$github_tar" -C $HOME/
+  rm $HOME/"$github_tar"
+  $HOME/./vqrd -daemon
   sleep 2
-  ./vqr-cli --version
+  $HOME/./vqr-cli --version
 }
 
 installTelegramSend() {
