@@ -4,7 +4,7 @@ STACK="400"
 AMOUNT="20"
 SEND_TO=""
 
-get_balance=$(./vqr-cli getbalance)
+get_balance=$($HOME/./vqr-cli getbalance)
 balance=$((${get_balance%.*} - $STACK))
 if [ $balance \> $AMOUNT ]; then
   tx=$(./vqr-cli "$SEND_TO" $AMOUNT)
