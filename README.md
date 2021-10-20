@@ -11,6 +11,9 @@ rm main.zip
 chmod +x $HOME/vqr-manager/vqr-manager    
 $HOME/vqr-manager/./vqr-manager  
 # configure  
+in functions  
+LATEST_RELEASE=""  # 0.17.2.3  
+
 in telegram-send  
 TG_BOT_ID=""  # bot token from @BotFather  
 TG_CHAT_ID=""  
