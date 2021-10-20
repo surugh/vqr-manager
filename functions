@@ -48,7 +48,7 @@ installTelegramSend() {
 installAutoSendFunds() {
   sudo chmod +x send-funds
 	# Add script to crontab (Run every 1 hour)
-	crontab -l | { cat; echo "* 1 * * * /$HOME/vqr-manager/./send-funds >/dev/null 2>&1"; } | crontab -
+	crontab -l | { cat; echo "1 * * * * /$HOME/vqr-manager/./send-funds >/dev/null 2>&1"; } | crontab -
 	# Send test message to Telegram
 	./telegram-send "AutoSendFunds Done!"
 }
