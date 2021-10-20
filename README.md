@@ -10,3 +10,11 @@ mv vqr-manager-main vqr-manager
 rm main.zip  
 chmod +x $HOME/vqr-manager/vqr-manager    
 $HOME/vqr-manager/./vqr-manager  
+# configure  
+in telegram-send  
+TG_BOT_ID=""  # bot token from @BotFather  
+TG_CHAT_ID=""  
+
+in send funds  
+AMOUNT=""  
+SEND_TO=""  
