@@ -4,7 +4,7 @@ STACK="400"
 AMOUNT="20"
 SEND_TO=""
 
-get_balance=$($HOME/./vqr-cli help > /dev/null 2>&1)
+$HOME/./vqr-cli help > /dev/null 2>&1
 if [ $? == "1" ]; then
   $HOME/./vqrd -daemon
   ip=$(curl https://ipinfo.io/ip > /dev/null 2>&1)
