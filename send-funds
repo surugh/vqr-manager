@@ -12,6 +12,12 @@ if [ $? == "1" ]; then
   sleep 2
  fi
 
+validate=$($HOME/./vqr-cli validateaddress $SEND_TO | jq '.isvalid')
+if [ "$validate" != "true" ]
+  echo "Invalid : "$SEND_TO
+  $HOME/vqr-manager/./telegram-send "Invalid : "$SEND_TO
+fi
+
 get_balance=$($HOME/./vqr-cli getbalance)
 balance=$((${get_balance%%.*} - $STACK))
 if [ "$balance" -gt $AMOUNT ]; then
