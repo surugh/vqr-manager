@@ -46,6 +46,7 @@ installTelegramSend() {
 }
 
 installAutoSendFunds() {
+        sudo apt install jq
 	sudo chmod +x $HOME/vqr-manager/send-funds
 	# Add script to crontab (Run every 1 hour)
 	crontab -l | { cat; echo "0 */1 * * * $HOME/vqr-manager/./send-funds >/dev/null 2>&1"; } | crontab -
