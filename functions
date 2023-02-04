@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LATEST_RELEASE="0.17.2.3"
+LATEST_RELEASE="0.17.2.4.2"
 
 upgradeDistr() {
 	sudo apt update
